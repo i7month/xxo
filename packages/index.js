@@ -1,6 +1,4 @@
 import COMPONENTS from './views' // components 组件
-// import VMessage from './views/VMessage' // toast 
-// import utils from '../utils' // 工具类（节流 防抖）
 console.log(COMPONENTS);
 
 const install = function (Vue, options) {
@@ -22,7 +20,6 @@ const install = function (Vue, options) {
     })
   }
   // 原型方法
-  // Vue.prototype.$utils = utils
 }
 
 export default install
