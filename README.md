@@ -14,7 +14,6 @@ $ yarn add xxo
 ```javascript
 // main.js
 import xxo from 'xxo'
-import 'xxo/lib/xxo.css'
 Vue.use(xxo)
 ```
 
