@@ -5,9 +5,7 @@ import store from './store'
 import 'vant/lib/index.css';
 
 import i7monthUi from '../packages'
-Vue.use(i7monthUi, {
-  components: ["lButton", "lInput"]
-})
+Vue.use(i7monthUi)
 
 Vue.config.productionTip = false
 

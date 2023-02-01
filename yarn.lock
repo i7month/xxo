@@ -4888,18 +4888,6 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz#eca284f75d2965079309dc0ad9255abb2ebc1632"
   integrity sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==
 
-llo@^0.1.0, llo@^0.1.5:
-  version "0.1.5"
-  resolved "https://registry.npmjs.org/llo/-/llo-0.1.5.tgz#492f47b84ac84055dfc9fd38799261d1769b709a"
-  integrity sha512-3rd2qGGrApl0jDOAN4duimsKZISSXSfRyiAsN36jGmghvz8KLEB/MZX6hEonHOgJbzI32iWK5qPMZnKKwpDUEg==
-  dependencies:
-    core-js "^3.6.5"
-    llo "^0.1.0"
-    vant "^2.12.33"
-    vue "^2.6.11"
-    vue-router "^3.2.0"
-    vuex "^3.4.0"
-
 loader-runner@^2.3.1, loader-runner@^2.4.0:
   version "2.4.0"
   resolved "https://registry.npmjs.org/loader-runner/-/loader-runner-2.4.0.tgz#ed47066bfe534d7e84c4c7b9998c2a75607d9357"
@@ -8056,6 +8044,18 @@ xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"
   resolved "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz#bb72779f5fa465186b1f438f674fa347fdb5db54"
   integrity sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==
+
+xxo@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.npmmirror.com/xxo/-/xxo-0.1.2.tgz#2971c8eeff8cc0240b3731c7a9c6d23ff1c3742e"
+  integrity sha512-/+F1VoUAxMLC7VlSsHflq9O/rJZ7NOLl7mtpRI9uHEFL67cEWt8lwuf+ysnEfuXUacip48la9589CmxxDVzGjw==
+  dependencies:
+    core-js "^3.6.5"
+    vant "^2.12.33"
+    vue "^2.6.11"
+    vue-router "^3.2.0"
+    vuex "^3.4.0"
+    xxo "^0.1.2"
 
 y18n@^4.0.0:
   version "4.0.3"
