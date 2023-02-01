@@ -36,6 +36,11 @@
       prop:'styleAll',
       event:'change'
     },
+    watch:{
+      domId:function(v){
+        this.init()
+      },
+    },
     data() {
       return {
         dom:null,
@@ -112,21 +117,26 @@
       };
     },
     mounted(){
-      this.dom = document.getElementById(this.domId)
-      if(!this.dom) return console.log('dom-id不存在')
-  
-      this.styleArray.forEach(i=>{
-        this[i.type][i.name] = parseInt(this.getstyle(this.dom, i.style))
-      })
-      this.setXAndY(this,this.dom)
-  
-      
+      this.init()
       const that = this
       window.onresize = function() {
         that.setXAndY(that,that.dom)
       }
     },
     methods: {
+      init(){
+        this.dom = document.getElementById(this.domId)
+        if(!this.dom) {
+          this.styleArray.forEach(i=> this[i.type][i.name] = 0)
+          this.x = 0;this.y = 0;
+          return console.log('dom-id不存在')
+        }
+    
+        this.styleArray.forEach(i=>{
+          this[i.type][i.name] = parseInt(this.getstyle(this.dom, i.style))
+        })
+        this.setXAndY(this,this.dom)
+      },
       getstyle(obj,name){
         if(window.getComputedStyle){
           return getComputedStyle(obj,null)[name];
@@ -140,11 +150,11 @@
         this.$emit('change',this.dom.attributes.style.nodeValue)
       },
       widthInput(){
-        this.dom.style.width = parseInt(this.x) + parseInt(this.padding.left) + parseInt(this.padding.right) + parseInt(this.border.left) + parseInt(this.border.right) + 'px'
+        this.dom.style.width = parseInt(this.x) + 'px'
         this.$emit('change',this.dom.attributes.style.nodeValue)
       },
       heightInput(){
-        this.dom.style.height = parseInt(this.y) + parseInt(this.padding.top) + parseInt(this.padding.bottom) + parseInt(this.border.top) + parseInt(this.border.bottom) + 'px'
+        this.dom.style.height = parseInt(this.y) + 'px'
         this.$emit('change',this.dom.attributes.style.nodeValue)
       },
       inputChange(t,c){

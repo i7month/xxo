@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    <div style="margin:20px;padding:10px 54px 4px 3px;border: 3px solid #000; background:red;" id="text-model"></div>
-    <!-- <lButton @click="send"/>
-    <l-input></l-input> -->
-    <xxo-box-model dom-id="text-model" v-model="getStyle"></xxo-box-model>
+    <div id="text-model" style="margin:20px;padding:10px 54px 4px 3px;border: 3px solid #000; background:red;" ></div>
+    <div id="text-model1" style="margin:1px;padding:1px 1px 1px 1px;border: 1px solid #000; background:green;" ></div>
+    <xxo-box-model :dom-id="dd" v-model="getStyle"></xxo-box-model>
     {{ getStyle }}
+    <button @click="sned">test</button>
   </div>
 </template>
 
@@ -14,11 +14,12 @@ export default {
   data(){
     return {
       getStyle:'',
+      dd:'text-model'
     }
   },
   methods: {
-    send (e) {
-      console.log(e);
+    sned () {
+      this.dd = 'text-model1'
     }
   }
 }
