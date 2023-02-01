@@ -13,10 +13,11 @@ import 'xxo/lib/xxo.css'
 Vue.use(xxo)
 ```
 
-### 使用 (值对行内属性生效)
+### 使用 (只对行内属性生效)
 
 >
 > `dom-id` 获取哪个dom的盒模型 取的值为**id**
+>
 > `v-model` 返回你修改后的style
 >
 
