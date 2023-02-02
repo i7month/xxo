@@ -129,6 +129,9 @@
         if(!this.dom) {
           this.styleArray.forEach(i=> this[i.type][i.name] = 0)
           this.x = 0;this.y = 0;
+          setTimeout(() => {
+            this.init()
+          }, 1000);
           return console.log('dom-id不存在')
         }
     
@@ -147,14 +150,17 @@
       setXAndY(that,dom){
         that.x = dom.offsetWidth - that.padding.left - that.padding.right - that.border.left - that.border.right
         that.y = dom.offsetHeight - that.border.bottom - that.border.top - that.padding.top - that.padding.bottom
+        if(!this.dom.attributes.style) return
         this.$emit('change',this.dom.attributes.style.nodeValue)
       },
       widthInput(){
         this.dom.style.width = parseInt(this.x) + 'px'
+        if(!this.dom.attributes.style) return
         this.$emit('change',this.dom.attributes.style.nodeValue)
       },
       heightInput(){
         this.dom.style.height = parseInt(this.y) + 'px'
+        if(!this.dom.attributes.style) return
         this.$emit('change',this.dom.attributes.style.nodeValue)
       },
       inputChange(t,c){
