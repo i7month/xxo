@@ -29,6 +29,7 @@
   </template>
   
   <script>
+  import {styleArray,direction} from './index'
   export default {
     name:'xxo-box-model',
     props:['domId','styleAll'],
@@ -47,73 +48,10 @@
         defaultStyle:'',
         x:0,
         y:0,
-        margin:{
-          top:'0',
-          left:'0',
-          right:'0',
-          bottom:'0',
-        },
-        padding:{
-          top:'0',
-          left:'0',
-          right:'0',
-          bottom:'0',
-        },
-        border:{
-          top:'0',
-          left:'0',
-          right:'0',
-          bottom:'0',
-        },
-        styleArray:[{
-          type:'border',
-          name:'top',
-          style:'borderTopWidth',
-        },{
-          type:'border',
-          name:'left',
-          style:'borderLeftWidth',
-        },{
-          type:'border',
-          name:'right',
-          style:'borderRightWidth',
-        },{
-          type:'border',
-          name:'bottom',
-          style:'borderBottomWidth',
-        },{
-          type:'margin',
-          name:'left',
-          style:'marginLeft',
-        },{
-          type:'margin',
-          name:'right',
-          style:'marginRight',
-        },{
-          type:'margin',
-          name:'bottom',
-          style:'marginBottom',
-        },{
-          type:'margin',
-          name:'top',
-          style:'marginTop',
-        },{
-          type:'padding',
-          name:'top',
-          style:'paddingTop',
-        },{
-          type:'padding',
-          name:'left',
-          style:'paddingLeft',
-        },{
-          type:'padding',
-          name:'right',
-          style:'paddingRight',
-        },{
-          type:'padding',
-          name:'bottom',
-          style:'paddingBottom',
-        },]
+        margin:JSON.parse(JSON.stringify(direction)),
+        padding:JSON.parse(JSON.stringify(direction)),
+        border:JSON.parse(JSON.stringify(direction)),
+        styleArray,
       };
     },
     mounted(){
@@ -127,7 +65,7 @@
       init(){
         this.dom = document.getElementById(this.domId)
         if(!this.dom) {
-          this.styleArray.forEach(i=> this[i.type][i.name] = 0)
+          this.styleArray.forEach(i=> {this[i.type][i.name] = 0})
           this.x = 0;this.y = 0;
           setTimeout(() => {
             this.init()
@@ -175,97 +113,5 @@
   };
   </script>
   <style lang="scss" scoped>
-  .box-model{
-    font-size: 13px;
-    input{
-      text-align: center
-    }
-    .style-all{
-      text-align: left;
-      position: relative;
-      opacity: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .ipt{
-      border:none;
-      background: transparent;
-      outline-style: none;
-      // width: 40px;
-      text-align: left;
-    }
-    .right{
-      text-align: right;
-    }
-    .box-text{
-      position: absolute;
-      z-index: 2;
-      left: 10px;
-      top: 2px;
-      font-weight: 500;
-    }
-    .box-number{
-      position: absolute;
-      background: transparent;
-      border: none;
-      outline-style: none;
-      width: auto;
-      max-width: 24px;
-      z-index: 2;
-    }
-    .box-top{
-      top: 2px;
-      left: 0;
-      right: 0;
-      margin: auto;
-      max-width: 100px;
-      text-align: center;
-    }
-    .box-left{
-      left: 2px;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-    }
-    .box-bottom{
-      bottom: 2px;
-      left: 0;
-      right: 0;
-      margin: auto;
-      max-width: 100px;
-      text-align: center;
-    }
-    .box-right{
-      right: 2px;
-      top: 0;
-      bottom: 0;
-      margin: auto;
-    }
-    .box-margin {
-      background: #f1c89d;
-      border: 2px dashed #000;
-      width: 270px;
-      height: 200px;
-      .box-border {
-        background: #f7d99a;
-        border: 2px solid #000;
-        width: 210px;
-        height: 140px;
-        .box-padding {
-          background: #bdc785;
-          border: 1px dashed #000;
-          width: 150px;
-          height: 90px;
-          .box-content {
-            background: #88aab6;
-            border: 1px solid #000;
-            width: 80px;
-            height: 30px;
-          }
-        }
-      }
-    }
-  }
+  @import './index'
   </style>

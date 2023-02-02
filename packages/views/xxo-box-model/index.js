@@ -1,0 +1,56 @@
+export const direction = {
+top:'0',
+left:'0',
+right:'0',
+bottom:'0',
+}
+
+export const styleArray = [{
+    type:'border',
+    name:'top',
+    style:'borderTopWidth',
+  },{
+    type:'border',
+    name:'left',
+    style:'borderLeftWidth',
+  },{
+    type:'border',
+    name:'right',
+    style:'borderRightWidth',
+  },{
+    type:'border',
+    name:'bottom',
+    style:'borderBottomWidth',
+  },{
+    type:'margin',
+    name:'left',
+    style:'marginLeft',
+  },{
+    type:'margin',
+    name:'right',
+    style:'marginRight',
+  },{
+    type:'margin',
+    name:'bottom',
+    style:'marginBottom',
+  },{
+    type:'margin',
+    name:'top',
+    style:'marginTop',
+  },{
+    type:'padding',
+    name:'top',
+    style:'paddingTop',
+  },{
+    type:'padding',
+    name:'left',
+    style:'paddingLeft',
+  },{
+    type:'padding',
+    name:'right',
+    style:'paddingRight',
+  },{
+    type:'padding',
+    name:'bottom',
+    style:'paddingBottom',
+  },]
