@@ -85,29 +85,40 @@
           return obj.currentSytle.name
         };
       },
+      result(){
+        if(!this.dom.attributes.style) return
+        this.$emit('change',this.dom.attributes.style.nodeValue)
+      },
       setXAndY(that,dom){
         that.x = dom.offsetWidth - that.padding.left - that.padding.right - that.border.left - that.border.right
         that.y = dom.offsetHeight - that.border.bottom - that.border.top - that.padding.top - that.padding.bottom
-        if(!this.dom.attributes.style) return
-        this.$emit('change',this.dom.attributes.style.nodeValue)
+        that.x < 0 ? that.x = 0 : null
+        that.y < 0 ? that.y = 0 : null
+        this.result()
       },
       widthInput(){
         this.dom.style.width = parseInt(this.x) + 'px'
-        if(!this.dom.attributes.style) return
-        this.$emit('change',this.dom.attributes.style.nodeValue)
+        this.result()
       },
       heightInput(){
         this.dom.style.height = parseInt(this.y) + 'px'
-        if(!this.dom.attributes.style) return
-        this.$emit('change',this.dom.attributes.style.nodeValue)
+        this.result()
       },
       inputChange(t,c){
         const n = c[0].toUpperCase() + c.substr(1)
-        if(['left','right'].includes(c)){
-          this.dom.style.width = this[t][c].length + '0px'
+        console.log();
+        if(t === 'border'){
+          if(this.dom.style.borderStyle) {
+            this.dom.style[t + n + 'Width'] = this[t][c] + 'px'
+            this.setXAndY(this,this.dom)
+          }else{
+            this[t][c] = 0
+          }
+        }else{
+          this.dom.style[t + n] = this[t][c] + 'px'
+          this.setXAndY(this,this.dom)
         }
-        t === 'border' ?  this.dom.style[t + n + 'Width'] = this[t][c] + 'px' : this.dom.style[t + n] = this[t][c] + 'px'
-        this.setXAndY(this,this.dom)
+        
       },
     },
   };
