@@ -88,7 +88,19 @@
       },
       result(){
         if(!this.dom.attributes.style) return
-        this.$emit('change',this.dom.attributes.style.nodeValue + `flag:${this.flag};`)
+        const arr = this.dom.attributes.style.nodeValue.split(';')
+        let nodeValue = ''
+        arr.forEach(i=>{
+          if(i.indexOf('%') != -1 || !i ) return 
+          if(i.indexOf('padding') > 0 
+          || i.indexOf('border') > 0 
+          || i.indexOf('margin') > 0
+          || i.indexOf('width') > 0
+          || i.indexOf('height') > 0){
+            nodeValue+= i + ';'
+          }
+        })
+        this.$emit('change',nodeValue + `flag:${this.flag};`)
         this.flag = !this.flag
       },
       setXAndY(that,dom){
