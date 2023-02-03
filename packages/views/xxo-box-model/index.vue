@@ -52,6 +52,7 @@
         padding:JSON.parse(JSON.stringify(direction)),
         border:JSON.parse(JSON.stringify(direction)),
         styleArray,
+        flag:false,
       };
     },
     mounted(){
@@ -87,7 +88,8 @@
       },
       result(){
         if(!this.dom.attributes.style) return
-        this.$emit('change',this.dom.attributes.style.nodeValue)
+        this.$emit('change',this.dom.attributes.style.nodeValue + `flag:${this.flag};`)
+        this.flag = !this.flag
       },
       setXAndY(that,dom){
         that.x = dom.offsetWidth - that.padding.left - that.padding.right - that.border.left - that.border.right
