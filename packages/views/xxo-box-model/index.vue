@@ -91,12 +91,14 @@
         const arr = this.dom.attributes.style.nodeValue.split(';')
         let nodeValue = ''
         arr.forEach(i=>{
+          console.log(i.indexOf('margin'));
           if(i.indexOf('%') != -1 || !i ) return 
-          if(i.indexOf('padding') > 0 
-          || i.indexOf('border') > 0 
-          || i.indexOf('margin') > 0
-          || i.indexOf('width') > 0
-          || i.indexOf('height') > 0){
+          if(i.indexOf('padding') >= 0 
+          || i.indexOf('border') >= 0 
+          || i.indexOf('margin') >= 0
+          || i.indexOf('width') >= 0
+          || i.indexOf('height') >= 0){
+            console.log(i);
             nodeValue+= i + ';'
           }
         })
