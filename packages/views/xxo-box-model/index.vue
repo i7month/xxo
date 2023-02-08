@@ -94,7 +94,12 @@
           console.log(i.indexOf('margin'));
           if(i.indexOf('%') != -1 || !i ) return 
           if(i.indexOf('padding') >= 0 
-          || i.indexOf('border') >= 0 
+          || i.indexOf('border:') >= 0 
+          || i.indexOf('border-width') >= 0 
+          || i.indexOf('border-top-width') >= 0 
+          || i.indexOf('border-left-width') >= 0 
+          || i.indexOf('border-right-width') >= 0 
+          || i.indexOf('border-bottom-width') >= 0 
           || i.indexOf('margin') >= 0
           || i.indexOf('width') >= 0
           || i.indexOf('height') >= 0){
