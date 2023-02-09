@@ -96,8 +96,6 @@
         const arr = this.dom.attributes.style.nodeValue.split(';')
         let nodeValue = ''
         arr.forEach(i=>{
-          console.log(this.paddingEdit);
-          console.log(this.marginEdit);
           if(i.indexOf('%') != -1 || !i ) return 
           var flag = i.indexOf('border-width') >= 0 
           || i.indexOf('border-top-width') >= 0 
@@ -146,7 +144,6 @@
           this.dom.style[t + n] = this[t][c] + 'px'
           this.setXAndY(this,this.dom)
         }
-        
       },
     },
   };
