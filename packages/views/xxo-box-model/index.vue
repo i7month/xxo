@@ -102,7 +102,8 @@
           || i.indexOf('border-bottom-width') >= 0 
           || i.indexOf('margin') >= 0
           || i.indexOf('width') >= 0
-          || i.indexOf('height') >= 0){
+          || i.indexOf('height') >= 0
+          && i.indexOf('rem') < 0){
             console.log(i);
             nodeValue+= i + ';'
           }
