@@ -47,6 +47,8 @@
         widthEdit:false,
         heightEdit:false,
         borderEdit:false,
+        marginEdit:false,
+        paddingEdit:false,
         dom:null,
         defaultStyle:'',
         x:0,
@@ -94,17 +96,19 @@
         const arr = this.dom.attributes.style.nodeValue.split(';')
         let nodeValue = ''
         arr.forEach(i=>{
+          console.log(this.paddingEdit);
+          console.log(this.marginEdit);
           if(i.indexOf('%') != -1 || !i ) return 
-          var flag = i.indexOf('padding') >= 0 
-          || i.indexOf('border-width') >= 0 
+          var flag = i.indexOf('border-width') >= 0 
           || i.indexOf('border-top-width') >= 0 
           || i.indexOf('border-left-width') >= 0 
           || i.indexOf('border-right-width') >= 0 
           || i.indexOf('border-bottom-width') >= 0 
-          || i.indexOf('margin') >= 0
           if(this.widthEdit) flag = flag || i.indexOf('width') >= 0
           if(this.heightEdit) flag = flag || i.indexOf('height') >= 0
           if(this.borderEdit) flag = flag || i.indexOf('border:') >= 0
+          if(this.marginEdit) flag = flag || i.indexOf('margin') >= 0
+          if(this.paddingEdit) flag = flag || i.indexOf('padding') >= 0
           if(flag) nodeValue+= i + ';'
         })
         this.$emit('change',nodeValue + `flag:${this.flag};`)
@@ -128,7 +132,8 @@
         this.result()
       },
       inputChange(t,c){
-        if(t === 'border') this.borderEdit == true
+        // 加判断条件 是否修改过 marign | padding | border
+        this[`${t}Edit`] = true
         const n = c[0].toUpperCase() + c.substr(1)
         if(t === 'border'){
           if(this.dom.style.borderStyle) {
