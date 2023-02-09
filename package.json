@@ -1,6 +1,6 @@
 {
   "name": "xxo",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "webpack To optimize the",
   "main": "lib/xxo.umd.min.js",
   "private": false,
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "xxo": "^1.0.11",
+    "xxo": "^1.0.12",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"

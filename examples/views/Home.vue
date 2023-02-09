@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div id="text-model" style="border: 0.1rem solid rgb(4, 146, 248);width: 1.86667rem;height:19px;"></div>
+    <div id="text-model" style="width: 1.86667rem;height:19px;background: red;"></div>
     <div id="text-model1" style="margin:1px;padding:1px 1px 1px 1px;border: 1px solid #000; background:green;" ></div>
     <xxo-box-model :dom-id="dd" v-model="getStyle"></xxo-box-model>
     {{ getStyle }}

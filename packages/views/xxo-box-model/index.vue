@@ -44,6 +44,9 @@
     },
     data() {
       return {
+        widthEdit:false,
+        heightEdit:false,
+        borderEdit:false,
         dom:null,
         defaultStyle:'',
         x:0,
@@ -70,7 +73,7 @@
           this.x = 0;this.y = 0;
           setTimeout(() => {
             this.init()
-          }, 1000);
+          }, 2000);
           return console.log('dom-id不存在')
         }
     
@@ -91,22 +94,18 @@
         const arr = this.dom.attributes.style.nodeValue.split(';')
         let nodeValue = ''
         arr.forEach(i=>{
-          console.log(i.indexOf('margin'));
           if(i.indexOf('%') != -1 || !i ) return 
-          if((i.indexOf('padding') >= 0 
-          || i.indexOf('border:') >= 0 
+          var flag = i.indexOf('padding') >= 0 
           || i.indexOf('border-width') >= 0 
           || i.indexOf('border-top-width') >= 0 
           || i.indexOf('border-left-width') >= 0 
           || i.indexOf('border-right-width') >= 0 
           || i.indexOf('border-bottom-width') >= 0 
           || i.indexOf('margin') >= 0
-          || i.indexOf('width') >= 0
-          || i.indexOf('height') >= 0)
-          && i.indexOf('rem') < 0){
-            console.log(i);
-            nodeValue+= i + ';'
-          }
+          if(this.widthEdit) flag = flag || i.indexOf('width') >= 0
+          if(this.heightEdit) flag = flag || i.indexOf('height') >= 0
+          if(this.borderEdit) flag = flag || i.indexOf('border:') >= 0
+          if(flag) nodeValue+= i + ';'
         })
         this.$emit('change',nodeValue + `flag:${this.flag};`)
         this.flag = !this.flag
@@ -120,15 +119,17 @@
       },
       widthInput(){
         this.dom.style.width = parseInt(this.x) + 'px'
+        this.widthEdit = true
         this.result()
       },
       heightInput(){
         this.dom.style.height = parseInt(this.y) + 'px'
+        this.heightEdit = true
         this.result()
       },
       inputChange(t,c){
+        if(t === 'border') this.borderEdit == true
         const n = c[0].toUpperCase() + c.substr(1)
-        console.log();
         if(t === 'border'){
           if(this.dom.style.borderStyle) {
             this.dom.style[t + n + 'Width'] = this[t][c] + 'px'
