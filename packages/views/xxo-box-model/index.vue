@@ -1,29 +1,31 @@
 <template>
     <div class="box-model">
       <div ref="box-margin" class="box-margin style-all">
-        <span class="box-text">margin</span>
-        <input class="box-number box-top" v-model="margin.top"  @change="inputChange('margin','top')"/>
-        <input class="box-number box-left" v-model="margin.left" @change="inputChange('margin','left')"/>
-        <input class="box-number box-bottom" v-model="margin.bottom" @change="inputChange('margin','bottom')"/>
-        <input class="box-number box-right" v-model="margin.right" @change="inputChange('margin','right')"/>
+        <span class="box-text" @click="checkShowMargin('margin')">{{marginText}}</span>
+        <input class="box-number box-top" type="number" v-model="margin.top"  @change="inputChange('margin','top')"/>
+        <input class="box-number box-left" type="number" v-model="margin.left" @change="inputChange('margin','left')"/>
+        <input class="box-number box-bottom" type="number" v-model="margin.bottom" @change="inputChange('margin','bottom')"/>
+        <input class="box-number box-right" type="number" v-model="margin.right" @change="inputChange('margin','right')"/>
         <div ref="box-border" class="box-border style-all" >
-          <span class="box-text">border</span>
-          <input class="box-number box-top" v-model="border.top" @change="inputChange('border','top')"/>
-          <input class="box-number box-left" v-model="border.left" @change="inputChange('border','left')"/>
-          <input class="box-number box-bottom" v-model="border.bottom" @change="inputChange('border','bottom')"/>
-          <input class="box-number box-right" v-model="border.right" @change="inputChange('border','right')"/>
+          <span class="box-text" @click="checkShowMargin('border')">{{borderText}}</span>
+          <input class="box-number box-top" type="number" v-model="border.top" @change="inputChange('border','top')"/>
+          <input class="box-number box-left" type="number" v-model="border.left" @change="inputChange('border','left')"/>
+          <input class="box-number box-bottom" type="number" v-model="border.bottom" @change="inputChange('border','bottom')"/>
+          <input class="box-number box-right" type="number" v-model="border.right" @change="inputChange('border','right')"/>
           <div ref="box-padding" class="box-padding style-all" >
-            <span class="box-text">padding</span>
-            <input class="box-number box-top" v-model="padding.top" @change="inputChange('padding','top')"/>
-            <input class="box-number box-left" v-model="padding.left" @change="inputChange('padding','left')"/>
-            <input class="box-number box-bottom" v-model="padding.bottom" @change="inputChange('padding','bottom')"/>
-            <input class="box-number box-right" v-model="padding.right" @change="inputChange('padding','right')"/>
+            <span class="box-text" @click="checkShowMargin('padding')">{{paddingText}}</span>
+            <input class="box-number box-top" type="number" v-model="padding.top" @change="inputChange('padding','top')"/>
+            <input class="box-number box-left" type="number" v-model="padding.left" @change="inputChange('padding','left')"/>
+            <input class="box-number box-bottom" type="number" v-model="padding.bottom" @change="inputChange('padding','bottom')"/>
+            <input class="box-number box-right" type="number" v-model="padding.right" @change="inputChange('padding','right')"/>
             <div ref="box-content" class="box-content style-all" >
               <input class="right ipt" type="text" v-model="x" @change="widthInput"> <span style="color:#000000">×</span>
               <input class="ipt" type="text" v-model="y" @change="heightInput">
             </div>
           </div>
         </div>
+        <div class="mask-layer" @click="showMargin = false" v-show="showMargin"></div>
+        <input ref="inputRef" class="enter-four-sides" v-model="enterModel" :style="{background:inputBackground}" type="number" @change="enterChange" :placeholder="placeholder" v-show="showMargin"/>
       </div>
     </div>
   </template>
@@ -44,6 +46,14 @@
     },
     data() {
       return {
+        checkShowMarginType:'',
+        enterModel:'',
+        inputBackground:'',
+        marginText:'margin',
+        paddingText:'padding',
+        borderText:'border',
+        placeholder:'',
+        showMargin:false,
         widthEdit:false,
         heightEdit:false,
         borderEdit:false,
@@ -68,6 +78,24 @@
       }
     },
     methods: {
+      enterChange(){
+        const r = ['top','left','right','bottom']
+        r.forEach(i=>{
+          this[this.checkShowMarginType][i] = this.enterModel
+          this.inputChange(this.checkShowMarginType,i)
+        })
+        this.showMargin = false
+      },
+      checkShowMargin(v){
+        this.showMargin = true
+        this.checkShowMarginType = v
+        if(v === 'margin') this.inputBackground = '#f1c89d'
+        if(v === 'padding') this.inputBackground = '#bdc785'
+        if(v === 'border') this.inputBackground = '#f7d99a'
+        this.enterModel = ''
+        this.placeholder = `请输入${v}四边边距`
+        this.$nextTick(()=> this.$refs.inputRef.focus())
+      },
       init(){
         this.dom = document.getElementById(this.domId)
         if(!this.dom) {

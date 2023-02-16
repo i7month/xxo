@@ -25,7 +25,7 @@ Vue.use(xxo)
 >
 > `dom-id` 获取哪个dom的盒模型 取的值为**id**
 >
-> `v-model` 返回你修改后的style
+> `v-model` 返回你修改后的style(只返回修改过的,标签行内的样式不返回)
 >
 
 ```vue
