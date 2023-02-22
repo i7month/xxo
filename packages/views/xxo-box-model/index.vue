@@ -74,7 +74,7 @@
       this.init()
       const that = this
       window.onresize = function() {
-        that.setXAndY(that,that.dom)
+        if(that && that.dom) that.setXAndY(that,that.dom)
       }
     },
     methods: {
